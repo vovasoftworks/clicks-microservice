@@ -18,6 +18,26 @@ return [
 
     'default' => env('DB_CONNECTION', 'sqlite'),
 
+    $clickHouse = [
+        'driver' => 'bavix::clickhouse',
+        'host'           => env('DB_HOST_CLICKHOUSE', '127.0.0.1'),
+        'port'           => env('DB_PORT_CLICKHOUSE', '8123'),
+        'database'       => env('DB_DATABASE_CLICKHOUSE', 'forge'),
+        'username'       => env('DB_USERNAME_CLICKHOUSE', 'forge'),
+        'password'       => env('DB_PASSWORD_CLICKHOUSE', ''),
+        'timeout_connect' => env('CLICKHOUSE_TIMEOUT_CONNECT',100),
+        'timeout_query' => env('CLICKHOUSE_TIMEOUT_QUERY',100),
+        'https' => (bool)env('CLICKHOUSE_HTTPS', null),
+        'retries' => env('CLICKHOUSE_RETRIES', 0),
+        'settings' => [ // optional
+            'max_partitions_per_insert_block' => 300,
+        ],
+        'options' => [
+            'timeout' => 10,
+            'protocol' => env('DB_PROTOCOL_CLICKHOUSE', 'http'),
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -112,6 +132,8 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'bavix::clickhouse' => $clickHouse,
+        'clickhouse' => $clickHouse,
     ],
 
     /*

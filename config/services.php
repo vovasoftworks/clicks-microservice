@@ -35,4 +35,7 @@ return [
         ],
     ],
 
+    'finance' => [
+        'endpoint' => env('FINANCE_ENDPOINT'),
+    ]
 ];
