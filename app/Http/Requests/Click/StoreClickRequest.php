@@ -16,7 +16,6 @@ class StoreClickRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
         return $this->user()->can('create', [Click::class, $this->getSignature(), $this->getClickId()]);
     }
 
@@ -27,7 +26,7 @@ class StoreClickRequest extends FormRequest
             self::OFFER_ID  => ['required', 'integer'],
             self::SOURCE    => ['required', 'string', 'max:255'],
             self::TIMESTAMP => ['required', 'date'],
-//            self::SIGNATURE => ['required', 'string', 'size:64']
+            self::SIGNATURE => ['required', 'string', 'size:64']
         ];
     }
 
